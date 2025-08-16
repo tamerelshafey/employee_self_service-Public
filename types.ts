@@ -30,6 +30,42 @@ export enum CourseStatus {
     Completed = 'Completed',
 }
 
+export enum AttendanceStatus {
+    Present = 'Present',
+    OnLeave = 'On Leave',
+    Holiday = 'Holiday',
+    Absent = 'Absent',
+}
+
+export interface BenefitEnrollment {
+    medical: {
+        planName: string;
+        coverageTier: string;
+        costPerPaycheck: number;
+    };
+    dental: {
+        planName: string;
+        coverageTier: string;
+        costPerPaycheck: number;
+    };
+    vision: {
+        planName: string;
+        coverageTier: string;
+        costPerPaycheck: number;
+    };
+    retirement: {
+        contributionRate: number; // Percentage
+        employerMatch: string;
+        balance: number;
+    };
+}
+
+export interface CalendarEvent {
+    date: string; // YYYY-MM-DD
+    title: string;
+    type: 'holiday' | 'event';
+}
+
 export interface Employee {
   id: string;
   name: string;
@@ -39,6 +75,16 @@ export interface Employee {
   phone: string;
   address: string;
   avatarUrl: string;
+  managerId?: string;
+  role?: 'manager' | 'employee';
+  compensation: {
+      salary: number;
+      lastBonus: {
+          amount: number;
+          date: string;
+      }
+  };
+  benefits: BenefitEnrollment;
 }
 
 export interface LeaveRequest {
@@ -92,4 +138,37 @@ export interface Course {
     description: string;
     status: CourseStatus;
     progress: number; // Percentage 0-100
+}
+
+export interface AttendanceRecord {
+    date: string;
+    day: string;
+    clockIn: string | null;
+    clockOut: string | null;
+    totalHours: number;
+    status: AttendanceStatus;
+}
+
+export interface JobOpening {
+    id: string;
+    title: string;
+    department: string;
+    location: string;
+    type: 'Full-time' | 'Part-time' | 'Contract';
+    description: string;
+    qualifications: string[];
+}
+
+export interface OnboardingTask {
+    id: string;
+    text: string;
+    completed: boolean;
+    category: 'Before You Start' | 'Your First Week' | 'First 30 Days';
+}
+
+export interface OffboardingTask {
+    id: string;
+    text: string;
+    completed: boolean;
+    category: 'Knowledge Transfer' | 'Asset Return' | 'Final Admin';
 }

@@ -1,6 +1,10 @@
 import React from 'react';
 import type { Employee } from '../types';
-import { DashboardIcon, ProfileIcon, LeaveIcon, PayslipIcon, LogoutIcon, ExpenseIcon, PerformanceIcon, DocumentIcon, LearningIcon } from './Icons';
+import { 
+    DashboardIcon, ProfileIcon, LeaveIcon, CompensationIcon, LogoutIcon, 
+    ExpenseIcon, PerformanceIcon, DocumentIcon, LearningIcon, AttendanceIcon,
+    OnboardingIcon, OffboardingIcon, CareersIcon, DirectoryIcon, TeamIcon, BenefitsIcon, CalendarIcon
+} from './Icons';
 
 interface SidebarProps {
     activePage: string;
@@ -11,12 +15,20 @@ interface SidebarProps {
 const navItems = [
     { id: 'dashboard', label: 'Dashboard', icon: <DashboardIcon /> },
     { id: 'profile', label: 'My Profile', icon: <ProfileIcon /> },
+    { id: 'onboarding', label: 'Onboarding', icon: <OnboardingIcon /> },
+    { id: 'offboarding', label: 'Offboarding', icon: <OffboardingIcon /> },
+    { id: 'attendance', label: 'Attendance', icon: <AttendanceIcon /> },
     { id: 'leave', label: 'Leave Requests', icon: <LeaveIcon /> },
     { id: 'expenses', label: 'Expense Claims', icon: <ExpenseIcon /> },
-    { id: 'payslips', label: 'My Payslips', icon: <PayslipIcon /> },
+    { id: 'compensation', label: 'Compensation', icon: <CompensationIcon /> },
+    { id: 'benefits', label: 'Benefits', icon: <BenefitsIcon /> },
     { id: 'performance', label: 'Performance', icon: <PerformanceIcon /> },
     { id: 'documents', label: 'Documents', icon: <DocumentIcon /> },
     { id: 'learning', label: 'Learning', icon: <LearningIcon /> },
+    { id: 'careers', label: 'Careers', icon: <CareersIcon /> },
+    { id: 'team', label: 'My Team', icon: <TeamIcon /> },
+    { id: 'directory', label: 'Directory', icon: <DirectoryIcon /> },
+    { id: 'calendar', label: 'Calendar', icon: <CalendarIcon /> },
 ];
 
 const Sidebar: React.FC<SidebarProps> = ({ activePage, setActivePage, employee }) => {
@@ -29,7 +41,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activePage, setActivePage, employee }
                 <h1 className="text-xl font-bold ml-2 text-white">ESS Portal</h1>
             </div>
 
-            <nav className="flex-1 px-4 py-6">
+            <nav className="flex-1 px-4 py-6 overflow-y-auto">
                 <ul>
                     {navItems.map(item => (
                         <li key={item.id} className="mb-2">

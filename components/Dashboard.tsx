@@ -1,6 +1,6 @@
 import React from 'react';
 import type { Employee } from '../types';
-import { ProfileIcon, LeaveIcon, PayslipIcon, LearningIcon } from './Icons';
+import { ProfileIcon, LeaveIcon, CompensationIcon, LearningIcon, AttendanceIcon } from './Icons';
 
 interface DashboardProps {
     employee: Employee;
@@ -49,9 +49,9 @@ const Dashboard: React.FC<DashboardProps> = ({ employee, setActivePage }) => {
                     color="bg-blue-500" 
                 />
                 <StatCard 
-                    title="Next Payday" 
-                    value="July 31, 2024" 
-                    icon={<PayslipIcon className="w-6 h-6 text-white" />} 
+                    title="Hours Logged (Week)" 
+                    value="38.5" 
+                    icon={<AttendanceIcon className="w-6 h-6 text-white" />} 
                     color="bg-green-500" 
                 />
                  <StatCard 
@@ -66,8 +66,10 @@ const Dashboard: React.FC<DashboardProps> = ({ employee, setActivePage }) => {
                 <h3 className="text-xl font-bold mb-4">Quick Actions</h3>
                  <div className="flex flex-wrap gap-4">
                     <button onClick={() => setActivePage('leave')} className="bg-indigo-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-indigo-700 transition-colors">Request Leave</button>
-                    <button onClick={() => setActivePage('documents')} className="bg-slate-200 text-slate-800 font-semibold py-2 px-4 rounded-lg hover:bg-slate-300 transition-colors">Browse Documents</button>
-                    <button onClick={() => setActivePage('payslips')} className="bg-slate-200 text-slate-800 font-semibold py-2 px-4 rounded-lg hover:bg-slate-300 transition-colors">View Payslips</button>
+                    <button onClick={() => setActivePage('careers')} className="bg-indigo-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-indigo-700 transition-colors">View Open Roles</button>
+                    <button onClick={() => setActivePage('directory')} className="bg-indigo-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-indigo-700 transition-colors">Find a Colleague</button>
+                    <button onClick={() => setActivePage('benefits')} className="bg-slate-200 text-slate-800 font-semibold py-2 px-4 rounded-lg hover:bg-slate-300 transition-colors">View Benefits</button>
+                    <button onClick={() => setActivePage('compensation')} className="bg-slate-200 text-slate-800 font-semibold py-2 px-4 rounded-lg hover:bg-slate-300 transition-colors">View Compensation</button>
                     <button onClick={() => setActivePage('profile')} className="bg-slate-200 text-slate-800 font-semibold py-2 px-4 rounded-lg hover:bg-slate-300 transition-colors">Update Profile</button>
                 </div>
             </div>
