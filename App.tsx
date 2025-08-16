@@ -16,7 +16,9 @@ import Directory from './components/Directory';
 import TeamView from './components/TeamView';
 import Benefits from './components/Benefits';
 import CompanyCalendar from './components/CompanyCalendar';
-import type { Employee, CalendarEvent } from './types';
+import Recognition from './components/Recognition';
+import type { Employee, CalendarEvent, Kudo } from './types';
+import { CompanyValue } from './types';
 import HelpAssistant from './components/HelpAssistant';
 import { SparklesIcon } from './components/Icons';
 
@@ -121,6 +123,20 @@ const mockCalendarEvents: CalendarEvent[] = [
     { date: '2024-12-25', title: 'Christmas Day', type: 'holiday' },
 ];
 
+const mockCompanyValues: CompanyValue[] = [
+    CompanyValue.Teamwork,
+    CompanyValue.Innovation,
+    CompanyValue.CustomerFocus,
+    CompanyValue.Integrity,
+    CompanyValue.Excellence,
+];
+
+const mockKudos: Kudo[] = [
+    { id: 'K001', senderId: 'E9876', receiverId: 'E4521', message: 'Alex did an incredible job refactoring our legacy component library. His work was clean, well-documented, and has already improved performance across the app. True excellence!', value: CompanyValue.Excellence, timestamp: '2024-07-28T14:30:00Z' },
+    { id: 'K002', senderId: 'E7364', receiverId: 'E6666', message: 'Huge thanks to David for stepping in to help with the user interviews for the new dashboard design. His product insights were invaluable and showed amazing teamwork.', value: CompanyValue.Teamwork, timestamp: '2024-07-27T10:00:00Z' },
+    { id: 'K003', senderId: 'E4521', receiverId: 'E5555', message: 'Sarah came up with a brilliant new caching strategy for our main API endpoint, which cut down response times by 50%. A perfect example of innovation!', value: CompanyValue.Innovation, timestamp: '2024-07-26T16:45:00Z' },
+    { id: 'K004', senderId: 'E1122', receiverId: 'E9876', message: 'Jane handled a critical production issue with incredible calm and professionalism, keeping the client informed and satisfied. A masterclass in customer focus.', value: CompanyValue.CustomerFocus, timestamp: '2024-07-25T11:20:00Z' },
+];
 
 const loggedInEmployee = allEmployees[0];
 
@@ -137,6 +153,7 @@ const pageTitles: { [key: string]: string } = {
     onboarding: 'Onboarding Checklist',
     offboarding: 'Offboarding Checklist',
     careers: 'Careers & Referrals',
+    recognition: 'Recognition Wall',
     directory: 'Company Directory',
     team: 'My Team',
     benefits: 'My Benefits',
@@ -146,11 +163,21 @@ const pageTitles: { [key: string]: string } = {
 const App: React.FC = () => {
     const [activePage, setActivePage] = useState('dashboard');
     const [isAssistantOpen, setIsAssistantOpen] = useState(false);
+    const [kudos, setKudos] = useState(mockKudos);
+
+    const handleNewKudo = (newKudo: Omit<Kudo, 'id' | 'timestamp'>) => {
+        const kudo: Kudo = {
+            id: `K${(kudos.length + 1).toString().padStart(3, '0')}`,
+            ...newKudo,
+            timestamp: new Date().toISOString(),
+        };
+        setKudos([kudo, ...kudos]);
+    };
 
     const renderPage = () => {
         switch (activePage) {
             case 'dashboard':
-                return <Dashboard employee={loggedInEmployee} setActivePage={setActivePage} />;
+                return <Dashboard employee={loggedInEmployee} setActivePage={setActivePage} kudos={kudos} allEmployees={allEmployees} />;
             case 'profile':
                 return <Profile employee={loggedInEmployee} />;
             case 'leave':
@@ -173,6 +200,8 @@ const App: React.FC = () => {
                 return <Offboarding />;
             case 'careers':
                 return <Recruitment />;
+            case 'recognition':
+                return <Recognition allKudos={kudos} allEmployees={allEmployees} loggedInEmployee={loggedInEmployee} companyValues={mockCompanyValues} onNewKudo={handleNewKudo} />;
             case 'directory':
                 return <Directory allEmployees={allEmployees} />;
             case 'team':
@@ -182,7 +211,7 @@ const App: React.FC = () => {
             case 'calendar':
                 return <CompanyCalendar events={mockCalendarEvents} />;
             default:
-                return <Dashboard employee={loggedInEmployee} setActivePage={setActivePage} />;
+                return <Dashboard employee={loggedInEmployee} setActivePage={setActivePage} kudos={kudos} allEmployees={allEmployees} />;
         }
     };
 

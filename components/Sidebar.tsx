@@ -3,7 +3,8 @@ import type { Employee } from '../types';
 import { 
     DashboardIcon, ProfileIcon, LeaveIcon, CompensationIcon, LogoutIcon, 
     ExpenseIcon, PerformanceIcon, DocumentIcon, LearningIcon, AttendanceIcon,
-    OnboardingIcon, OffboardingIcon, CareersIcon, DirectoryIcon, TeamIcon, BenefitsIcon, CalendarIcon
+    OnboardingIcon, OffboardingIcon, CareersIcon, DirectoryIcon, TeamIcon, 
+    BenefitsIcon, CalendarIcon, RecognitionIcon
 } from './Icons';
 
 interface SidebarProps {
@@ -26,6 +27,7 @@ const navItems = [
     { id: 'documents', label: 'Documents', icon: <DocumentIcon /> },
     { id: 'learning', label: 'Learning', icon: <LearningIcon /> },
     { id: 'careers', label: 'Careers', icon: <CareersIcon /> },
+    { id: 'recognition', label: 'Recognition', icon: <RecognitionIcon /> },
     { id: 'team', label: 'My Team', icon: <TeamIcon /> },
     { id: 'directory', label: 'Directory', icon: <DirectoryIcon /> },
     { id: 'calendar', label: 'Calendar', icon: <CalendarIcon /> },

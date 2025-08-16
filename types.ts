@@ -37,6 +37,14 @@ export enum AttendanceStatus {
     Absent = 'Absent',
 }
 
+export enum CompanyValue {
+    Teamwork = 'Teamwork',
+    Innovation = 'Innovation',
+    CustomerFocus = 'Customer Focus',
+    Integrity = 'Integrity',
+    Excellence = 'Excellence',
+}
+
 export interface BenefitEnrollment {
     medical: {
         planName: string;
@@ -171,4 +179,13 @@ export interface OffboardingTask {
     text: string;
     completed: boolean;
     category: 'Knowledge Transfer' | 'Asset Return' | 'Final Admin';
+}
+
+export interface Kudo {
+    id: string;
+    senderId: string;
+    receiverId: string;
+    message: string;
+    value: CompanyValue;
+    timestamp: string; // ISO 8601 format
 }
