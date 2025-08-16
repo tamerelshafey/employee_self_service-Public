@@ -1,0 +1,5 @@
+{
+  "name": "Employee Self-Service Portal",
+  "description": "A modern, responsive Employee Self-Service (ESS) portal built with React and Tailwind CSS. This application allows employees to view their profile, manage leave requests, and access their payslips through a clean and intuitive interface.",
+  "requestFramePermissions": []
+}
