@@ -1,3 +1,4 @@
+
 import React, { useState, useRef, useEffect } from 'react';
 import { GoogleGenAI } from "@google/genai";
 import { SendIcon, CloseIcon, SparklesIcon } from './Icons';
@@ -69,29 +70,29 @@ const HelpAssistant: React.FC<HelpAssistantProps> = ({ isOpen, onClose }) => {
 
     return (
         <div className="fixed bottom-0 right-0 mb-4 mr-4 z-50 w-full max-w-sm">
-            <div className="bg-white rounded-xl shadow-2xl flex flex-col h-[60vh] max-h-[700px]">
-                <header className="flex items-center justify-between p-4 border-b bg-slate-50 rounded-t-xl">
+            <div className="bg-white dark:bg-slate-800 rounded-xl shadow-2xl flex flex-col h-[60vh] max-h-[700px] border dark:border-slate-700">
+                <header className="flex items-center justify-between p-4 border-b dark:border-slate-700 bg-slate-50 dark:bg-slate-700/50 rounded-t-xl">
                      <div className="flex items-center gap-3">
-                        <span className="p-2 bg-indigo-100 rounded-full">
-                           <SparklesIcon className="w-6 h-6 text-indigo-600" />
+                        <span className="p-2 bg-indigo-100 dark:bg-indigo-900/30 rounded-full">
+                           <SparklesIcon className="w-6 h-6 text-indigo-600 dark:text-indigo-400" />
                         </span>
-                        <h3 className="text-lg font-bold text-slate-800">AI Assistant</h3>
+                        <h3 className="text-lg font-bold text-slate-800 dark:text-slate-200">AI Assistant</h3>
                     </div>
-                    <button onClick={onClose} className="text-slate-400 hover:text-slate-600">
+                    <button onClick={onClose} className="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
                         <CloseIcon />
                     </button>
                 </header>
-                <main className="flex-1 p-4 overflow-y-auto bg-slate-100 space-y-4">
+                <main className="flex-1 p-4 overflow-y-auto bg-slate-100 dark:bg-slate-900 space-y-4">
                     {messages.map((msg, index) => (
                         <div key={index} className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}>
-                            <div className={`max-w-xs lg:max-w-md px-4 py-2 rounded-2xl ${msg.sender === 'user' ? 'bg-indigo-600 text-white rounded-br-none' : 'bg-slate-200 text-slate-800 rounded-bl-none'}`}>
+                            <div className={`max-w-xs lg:max-w-md px-4 py-2 rounded-2xl ${msg.sender === 'user' ? 'bg-indigo-600 text-white rounded-br-none' : 'bg-slate-200 text-slate-800 dark:bg-slate-700 dark:text-slate-200 rounded-bl-none'}`}>
                                 <p className="text-sm break-words">{msg.text}</p>
                             </div>
                         </div>
                     ))}
                      {isLoading && (
                         <div className="flex justify-start">
-                            <div className="bg-slate-200 text-slate-800 rounded-2xl rounded-bl-none px-4 py-2">
+                            <div className="bg-slate-200 dark:bg-slate-700 text-slate-800 dark:text-slate-200 rounded-2xl rounded-bl-none px-4 py-2">
                                 <div className="flex items-center justify-center space-x-1">
                                     <div className="w-2 h-2 bg-slate-500 rounded-full animate-pulse [animation-delay:-0.3s]"></div>
                                     <div className="w-2 h-2 bg-slate-500 rounded-full animate-pulse [animation-delay:-0.15s]"></div>
@@ -102,18 +103,18 @@ const HelpAssistant: React.FC<HelpAssistantProps> = ({ isOpen, onClose }) => {
                     )}
                     <div ref={messagesEndRef} />
                 </main>
-                <footer className="p-4 border-t bg-white rounded-b-xl">
-                    <div className="flex items-center bg-slate-100 rounded-lg">
+                <footer className="p-4 border-t dark:border-slate-700 bg-white dark:bg-slate-800 rounded-b-xl">
+                    <div className="flex items-center bg-slate-100 dark:bg-slate-700 rounded-lg">
                         <input
                             type="text"
                             value={input}
                             onChange={(e) => setInput(e.target.value)}
                             onKeyPress={handleKeyPress}
                             placeholder="Ask about HR policies..."
-                            className="w-full bg-transparent px-4 py-2 text-slate-700 focus:outline-none"
+                            className="w-full bg-transparent px-4 py-2 text-slate-700 dark:text-slate-200 focus:outline-none"
                             disabled={isLoading}
                         />
-                        <button onClick={handleSend} disabled={isLoading || !input.trim()} className="p-2 text-indigo-600 hover:bg-indigo-100 rounded-full m-1 disabled:text-slate-400 disabled:hover:bg-transparent transition-colors">
+                        <button onClick={handleSend} disabled={isLoading || !input.trim()} className="p-2 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-100 dark:hover:bg-indigo-900/30 rounded-full m-1 disabled:text-slate-400 disabled:hover:bg-transparent transition-colors">
                             <SendIcon className="w-6 h-6"/>
                         </button>
                     </div>

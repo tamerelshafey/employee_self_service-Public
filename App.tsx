@@ -1,4 +1,7 @@
-import React, { useState } from 'react';
+
+
+import React, { useState, useRef, useEffect, useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 import Sidebar from './components/Sidebar';
 import Dashboard from './components/Dashboard';
 import Profile from './components/Profile';
@@ -17,153 +20,84 @@ import TeamView from './components/TeamView';
 import Benefits from './components/Benefits';
 import CompanyCalendar from './components/CompanyCalendar';
 import Recognition from './components/Recognition';
-import type { Employee, CalendarEvent, Kudo } from './types';
-import { CompanyValue } from './types';
+import Approvals from './components/Approvals';
+import Payslips from './components/Payslips';
+import Tasks from './components/Tasks';
+import Orders from './components/Orders';
+import Visits from './components/Visits';
+import NewTask from './components/NewTask';
+import Payments from './components/Payments';
+import PettyExpense from './components/PettyExpense';
+import type { Employee, Kudo, LeaveRequest, ExpenseClaim } from './types';
+import { NotificationType, LeaveStatus, ExpenseStatus, ApprovalAction } from './types';
+import { 
+    allEmployees, mockCalendarEvents, mockCompanyValues, mockKudos, mockAnnouncements, mockNotifications, allLeaveRequests, 
+    allExpenseClaims, mockLeaveBalances, mockPayslips, mockPerformanceReviews, mockDocuments, mockEnrolledCourses, 
+    mockAvailableCourses, mockAttendance, mockOnboardingTasks, mockOffboardingTasks, mockJobOpenings, mockTasks
+} from './data';
 import HelpAssistant from './components/HelpAssistant';
-import { SparklesIcon } from './components/Icons';
-
-const allEmployees: Employee[] = [
-    {
-        id: 'E4521', name: 'Alex Doe', position: 'Senior Frontend Engineer', department: 'Technology',
-        email: 'alex.doe@example.com', phone: '+1 (555) 123-4567', address: '123 Tech Way, Silicon Valley, CA 94105',
-        avatarUrl: `https://i.pravatar.cc/150?u=E4521`, managerId: 'E9876', role: 'employee',
-        compensation: { salary: 120000, lastBonus: { amount: 15000, date: '2024-01-15' } },
-        benefits: {
-            medical: { planName: 'PPO Gold', coverageTier: 'Employee + Spouse', costPerPaycheck: 180 },
-            dental: { planName: 'DentalPlus', coverageTier: 'Employee + Spouse', costPerPaycheck: 25 },
-            vision: { planName: 'VisionPro', coverageTier: 'Employee + Spouse', costPerPaycheck: 10 },
-            retirement: { contributionRate: 6, employerMatch: '100% up to 4%', balance: 52340 }
-        }
-    },
-    {
-        id: 'E9876', name: 'Jane Smith', position: 'Engineering Manager', department: 'Technology',
-        email: 'jane.smith@example.com', phone: '+1 (555) 987-6543', address: '456 Code Lane, Silicon Valley, CA 94105',
-        avatarUrl: `https://i.pravatar.cc/150?u=E9876`, managerId: 'E1122', role: 'manager',
-        compensation: { salary: 160000, lastBonus: { amount: 25000, date: '2024-01-15' } },
-        benefits: {
-            medical: { planName: 'HMO Platinum', coverageTier: 'Family', costPerPaycheck: 250 },
-            dental: { planName: 'DentalPlus', coverageTier: 'Family', costPerPaycheck: 40 },
-            vision: { planName: 'VisionPro Max', coverageTier: 'Family', costPerPaycheck: 15 },
-            retirement: { contributionRate: 8, employerMatch: '100% up to 5%', balance: 110500 }
-        }
-    },
-    {
-        id: 'E1122', name: 'Robert Brown', position: 'Director of Engineering', department: 'Technology',
-        email: 'robert.brown@example.com', phone: '+1 (555) 112-2334', address: '789 App Ave, Silicon Valley, CA 94105',
-        avatarUrl: `https://i.pravatar.cc/150?u=E1122`, role: 'manager',
-        compensation: { salary: 220000, lastBonus: { amount: 40000, date: '2024-01-15' } },
-         benefits: {
-            medical: { planName: 'HMO Platinum', coverageTier: 'Family', costPerPaycheck: 250 },
-            dental: { planName: 'DentalPlus', coverageTier: 'Family', costPerPaycheck: 40 },
-            vision: { planName: 'VisionPro Max', coverageTier: 'Family', costPerPaycheck: 15 },
-            retirement: { contributionRate: 10, employerMatch: '100% up to 5%', balance: 250000 }
-        }
-    },
-    {
-        id: 'E7364', name: 'Emily White', position: 'UI/UX Designer', department: 'Design',
-        email: 'emily.white@example.com', phone: '+1 (555) 736-4555', address: '101 Design St, San Francisco, CA 94102',
-        avatarUrl: `https://i.pravatar.cc/150?u=E7364`, managerId: 'E8455',
-        compensation: { salary: 95000, lastBonus: { amount: 10000, date: '2024-01-15' } },
-        benefits: {
-            medical: { planName: 'PPO Gold', coverageTier: 'Employee Only', costPerPaycheck: 90 },
-            dental: { planName: 'DentalBasic', coverageTier: 'Employee Only', costPerPaycheck: 12 },
-            vision: { planName: 'VisionPro', coverageTier: 'Employee Only', costPerPaycheck: 5 },
-            retirement: { contributionRate: 5, employerMatch: '100% up to 4%', balance: 28000 }
-        }
-    },
-    {
-        id: 'E8455', name: 'Michael Green', position: 'Design Lead', department: 'Design',
-        email: 'michael.green@example.com', phone: '+1 (555) 845-5666', address: '202 Creative Blvd, San Francisco, CA 94102',
-        avatarUrl: `https://i.pravatar.cc/150?u=E8455`, role: 'manager',
-        compensation: { salary: 140000, lastBonus: { amount: 20000, date: '2024-01-15' } },
-        benefits: {
-            medical: { planName: 'PPO Gold', coverageTier: 'Family', costPerPaycheck: 280 },
-            dental: { planName: 'DentalPlus', coverageTier: 'Family', costPerPaycheck: 40 },
-            vision: { planName: 'VisionPro Max', coverageTier: 'Family', costPerPaycheck: 15 },
-            retirement: { contributionRate: 7, employerMatch: '100% up to 5%', balance: 95000 }
-        }
-    },
-     {
-        id: 'E5555', name: 'Sarah Jones', position: 'Backend Engineer', department: 'Technology',
-        email: 'sarah.jones@example.com', phone: '+1 (555) 555-5555', address: '303 Data Dr, Silicon Valley, CA 94105',
-        avatarUrl: `https://i.pravatar.cc/150?u=E5555`, managerId: 'E9876',
-        compensation: { salary: 115000, lastBonus: { amount: 14000, date: '2024-01-15' } },
-        benefits: {
-            medical: { planName: 'PPO Gold', coverageTier: 'Employee Only', costPerPaycheck: 90 },
-            dental: { planName: 'DentalPlus', coverageTier: 'Employee Only', costPerPaycheck: 15 },
-            vision: { planName: 'VisionPro', coverageTier: 'Employee Only', costPerPaycheck: 5 },
-            retirement: { contributionRate: 5, employerMatch: '100% up to 4%', balance: 45000 }
-        }
-    },
-     {
-        id: 'E6666', name: 'David Lee', position: 'Product Manager', department: 'Product',
-        email: 'david.lee@example.com', phone: '+1 (555) 666-6666', address: '404 Feature Rd, San Francisco, CA 94102',
-        avatarUrl: `https://i.pravatar.cc/150?u=E6666`, managerId: 'E8455',
-        compensation: { salary: 130000, lastBonus: { amount: 18000, date: '2024-01-15' } },
-        benefits: {
-            medical: { planName: 'HMO Platinum', coverageTier: 'Employee + Family', costPerPaycheck: 250 },
-            dental: { planName: 'DentalPlus', coverageTier: 'Employee + Family', costPerPaycheck: 40 },
-            vision: { planName: 'VisionPro', coverageTier: 'Employee + Family', costPerPaycheck: 15 },
-            retirement: { contributionRate: 8, employerMatch: '100% up to 5%', balance: 88000 }
-        }
-    },
-];
-
-const mockCalendarEvents: CalendarEvent[] = [
-    { date: '2024-01-01', title: 'New Year\'s Day', type: 'holiday' },
-    { date: '2024-05-27', title: 'Memorial Day', type: 'holiday' },
-    { date: '2024-07-04', title: 'Independence Day', type: 'holiday' },
-    { date: '2024-08-15', title: 'Summer Picnic', type: 'event' },
-    { date: '2024-09-02', title: 'Labor Day', type: 'holiday' },
-    { date: '2024-10-31', title: 'Halloween Party', type: 'event' },
-    { date: '2024-11-28', title: 'Thanksgiving Day', type: 'holiday' },
-    { date: '2024-11-29', title: 'Day after Thanksgiving', type: 'holiday' },
-    { date: '2024-12-20', title: 'Company Town Hall', type: 'event' },
-    { date: '2024-12-24', title: 'Christmas Eve', type: 'holiday' },
-    { date: '2024-12-25', title: 'Christmas Day', type: 'holiday' },
-];
-
-const mockCompanyValues: CompanyValue[] = [
-    CompanyValue.Teamwork,
-    CompanyValue.Innovation,
-    CompanyValue.CustomerFocus,
-    CompanyValue.Integrity,
-    CompanyValue.Excellence,
-];
-
-const mockKudos: Kudo[] = [
-    { id: 'K001', senderId: 'E9876', receiverId: 'E4521', message: 'Alex did an incredible job refactoring our legacy component library. His work was clean, well-documented, and has already improved performance across the app. True excellence!', value: CompanyValue.Excellence, timestamp: '2024-07-28T14:30:00Z' },
-    { id: 'K002', senderId: 'E7364', receiverId: 'E6666', message: 'Huge thanks to David for stepping in to help with the user interviews for the new dashboard design. His product insights were invaluable and showed amazing teamwork.', value: CompanyValue.Teamwork, timestamp: '2024-07-27T10:00:00Z' },
-    { id: 'K003', senderId: 'E4521', receiverId: 'E5555', message: 'Sarah came up with a brilliant new caching strategy for our main API endpoint, which cut down response times by 50%. A perfect example of innovation!', value: CompanyValue.Innovation, timestamp: '2024-07-26T16:45:00Z' },
-    { id: 'K004', senderId: 'E1122', receiverId: 'E9876', message: 'Jane handled a critical production issue with incredible calm and professionalism, keeping the client informed and satisfied. A masterclass in customer focus.', value: CompanyValue.CustomerFocus, timestamp: '2024-07-25T11:20:00Z' },
-];
-
-const loggedInEmployee = allEmployees[0];
-
-const pageTitles: { [key: string]: string } = {
-    dashboard: 'Dashboard',
-    profile: 'My Profile',
-    leave: 'Leave Requests',
-    expenses: 'Expense Claims',
-    compensation: 'Compensation',
-    performance: 'Performance Review',
-    documents: 'Document Management',
-    learning: 'Learning & Development',
-    attendance: 'Attendance Tracking',
-    onboarding: 'Onboarding Checklist',
-    offboarding: 'Offboarding Checklist',
-    careers: 'Careers & Referrals',
-    recognition: 'Recognition Wall',
-    directory: 'Company Directory',
-    team: 'My Team',
-    benefits: 'My Benefits',
-    calendar: 'Company Calendar',
-};
+import { SparklesIcon, MenuIcon, ChevronDownIcon, BellIcon, RecognitionIcon, LeaveIcon, PerformanceIcon, InformationCircleIcon } from './components/Icons';
+import BottomNav from './components/BottomNav';
+import { timeAgo } from './utils/time-helpers';
+import Toast from './components/Toast';
+import ThemeToggle from './components/ThemeToggle';
+import LanguageSwitcher from './components/LanguageSwitcher';
+import LeaveRequestModal from './components/LeaveRequestModal';
+import ExpenseClaimModal from './components/ExpenseClaimModal';
 
 const App: React.FC = () => {
+    const { t, i18n } = useTranslation();
     const [activePage, setActivePage] = useState('dashboard');
     const [isAssistantOpen, setIsAssistantOpen] = useState(false);
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     const [kudos, setKudos] = useState(mockKudos);
+    const [loggedInEmployee, setLoggedInEmployee] = useState<Employee>(allEmployees[0]);
+    const [isAccountSwitcherOpen, setIsAccountSwitcherOpen] = useState(false);
+    const [notifications, setNotifications] = useState(mockNotifications);
+    const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
+    const [leaveRequests, setLeaveRequests] = useState(allLeaveRequests);
+    const [expenseClaims, setExpenseClaims] = useState(allExpenseClaims);
+    const [toastMessage, setToastMessage] = useState('');
+    const [theme, setTheme] = useState<'light' | 'dark'>(() => (localStorage.getItem('theme') as ('light' | 'dark')) || 'light');
+    const [isLeaveModalOpen, setIsLeaveModalOpen] = useState(false);
+    const [isExpenseModalOpen, setIsExpenseModalOpen] = useState(false);
+    
+    const switcherRef = useRef<HTMLDivElement>(null);
+    const notificationsRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        if (theme === 'dark') {
+            document.documentElement.classList.add('dark');
+            localStorage.setItem('theme', 'dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+            localStorage.setItem('theme', 'light');
+        }
+    }, [theme]);
+    
+    useEffect(() => {
+        document.documentElement.lang = i18n.language;
+        document.documentElement.dir = i18n.dir(i18n.language);
+    }, [i18n, i18n.language]);
+
+    const toggleTheme = () => {
+        setTheme(prevTheme => (prevTheme === 'light' ? 'dark' : 'light'));
+    };
+
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (switcherRef.current && !switcherRef.current.contains(event.target as Node)) {
+                setIsAccountSwitcherOpen(false);
+            }
+             if (notificationsRef.current && !notificationsRef.current.contains(event.target as Node)) {
+                setIsNotificationsOpen(false);
+            }
+        };
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [switcherRef, notificationsRef]);
 
     const handleNewKudo = (newKudo: Omit<Kudo, 'id' | 'timestamp'>) => {
         const kudo: Kudo = {
@@ -173,78 +107,271 @@ const App: React.FC = () => {
         };
         setKudos([kudo, ...kudos]);
     };
+    
+    const handleApprovalAction = (itemId: string, itemType: 'leave' | 'expense', action: ApprovalAction) => {
+        if (itemType === 'leave') {
+            setLeaveRequests(prev => prev.map(req => 
+                req.id === itemId ? { ...req, status: action === ApprovalAction.Approve ? LeaveStatus.Approved : LeaveStatus.Rejected } : req
+            ));
+        } else {
+            setExpenseClaims(prev => prev.map(claim => 
+                claim.id === itemId ? { ...claim, status: action === ApprovalAction.Approve ? ExpenseStatus.Approved : ExpenseStatus.Rejected } : claim
+            ));
+        }
+        setToastMessage(`Request has been ${action.toLowerCase()}.`);
+    };
+    
+    const handleNewLeaveRequest = (request: Omit<LeaveRequest, 'id' | 'status' | 'employeeId'>) => {
+        const newRequest: LeaveRequest = {
+            id: `LR${Date.now()}`,
+            ...request,
+            employeeId: loggedInEmployee.id,
+            status: LeaveStatus.Pending,
+        };
+        setLeaveRequests(prev => [newRequest, ...prev]);
+        setIsLeaveModalOpen(false);
+        setToastMessage('Leave request submitted successfully!');
+    };
+    
+    const handleNewExpenseClaim = (claim: Omit<ExpenseClaim, 'id' | 'status' | 'employeeId'>) => {
+        const newClaim: ExpenseClaim = {
+            id: `EC${Date.now()}`,
+            ...claim,
+            employeeId: loggedInEmployee.id,
+            status: ExpenseStatus.Pending,
+        };
+        setExpenseClaims(prev => [newClaim, ...prev]);
+        setIsExpenseModalOpen(false);
+        setToastMessage('Expense claim submitted successfully!');
+    };
+
+    const userNotifications = useMemo(() => notifications
+      .filter(n => n.recipientId === loggedInEmployee.id || n.recipientId === 'all')
+      .sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()), [notifications, loggedInEmployee.id]);
+      
+    const unreadNotificationCount = userNotifications.filter(n => !n.read).length;
+
+    const userLeaveBalance = mockLeaveBalances[loggedInEmployee.id] || [];
+    const userLeaveRequests = leaveRequests.filter(r => r.employeeId === loggedInEmployee.id);
+    const userExpenseClaims = expenseClaims.filter(c => c.employeeId === loggedInEmployee.id);
+    
+    const pendingApprovals = useMemo(() => [
+        ...leaveRequests.filter(r => r.status === LeaveStatus.Pending).map(r => ({ ...r, itemType: 'leave' as const })),
+        ...expenseClaims.filter(c => c.status === ExpenseStatus.Pending).map(c => ({ ...c, itemType: 'expense' as const })),
+    ], [leaveRequests, expenseClaims]);
+
+    const handleMarkAsRead = (notificationId: string) => {
+        setNotifications(notifications.map(n => n.id === notificationId ? { ...n, read: true } : n));
+    };
+
+    const handleMarkAllAsRead = () => {
+        setNotifications(notifications.map(n => (n.recipientId === loggedInEmployee.id || n.recipientId === 'all') ? { ...n, read: true } : n));
+        setIsNotificationsOpen(false);
+    };
+    
+    const getNotificationIcon = (type: NotificationType) => {
+        const iconClass = "w-5 h-5 text-slate-500 dark:text-slate-400";
+        switch (type) {
+            case NotificationType.Kudos: return <RecognitionIcon className={iconClass} />;
+            case NotificationType.LeaveRequest: return <LeaveIcon className={iconClass} />;
+            case NotificationType.PerformanceReview: return <PerformanceIcon className={iconClass} />;
+            case NotificationType.System: return <InformationCircleIcon className={iconClass} />;
+            default: return <BellIcon className={iconClass} />;
+        }
+    };
+    
+    const pageComponents: { [key: string]: React.ReactElement } = {
+        dashboard: <Dashboard 
+            employee={loggedInEmployee} 
+            setActivePage={setActivePage}
+            pendingApprovalsCount={pendingApprovals.length}
+        />,
+        profile: <Profile employee={loggedInEmployee} allEmployees={allEmployees} />,
+        leave: <Leave 
+            leaveBalance={userLeaveBalance}
+            userLeaveRequests={userLeaveRequests}
+            onNewRequestClick={() => setIsLeaveModalOpen(true)}
+        />,
+        expenses: <Expenses
+            userExpenseClaims={userExpenseClaims}
+            onNewClaimClick={() => setIsExpenseModalOpen(true)}
+        />,
+        compensation: <Compensation employee={loggedInEmployee} />,
+        payslips: <Payslips payslips={mockPayslips} />,
+        performance: <Performance reviews={mockPerformanceReviews} />,
+        documents: <Documents documents={mockDocuments} />,
+        learning: <Learning enrolledCourses={mockEnrolledCourses} availableCourses={mockAvailableCourses} />,
+        attendance: <Attendance attendanceLog={mockAttendance} />,
+        tasks: <Tasks tasks={mockTasks} allEmployees={allEmployees} setActivePage={setActivePage} />,
+        onboarding: <Onboarding tasks={mockOnboardingTasks} />,
+        offboarding: <Offboarding tasks={mockOffboardingTasks} />,
+        careers: <Recruitment jobOpenings={mockJobOpenings} />,
+        recognition: <Recognition allKudos={kudos} allEmployees={allEmployees} loggedInEmployee={loggedInEmployee} companyValues={mockCompanyValues} onNewKudo={handleNewKudo} />,
+        directory: <Directory allEmployees={allEmployees} />,
+        team: <TeamView currentEmployee={loggedInEmployee} allEmployees={allEmployees} />,
+        benefits: <Benefits employee={loggedInEmployee} />,
+        calendar: <CompanyCalendar events={mockCalendarEvents} />,
+        approvals: <Approvals loggedInEmployee={loggedInEmployee} allEmployees={allEmployees} pendingApprovals={pendingApprovals} onAction={handleApprovalAction} />,
+        orders: <Orders setActivePage={setActivePage} setToastMessage={setToastMessage} />,
+        visits: <Visits setActivePage={setActivePage} setToastMessage={setToastMessage} />,
+        newTask: <NewTask allEmployees={allEmployees} loggedInEmployeeId={loggedInEmployee.id} setActivePage={setActivePage} setToastMessage={setToastMessage} />,
+        payments: <Payments setActivePage={setActivePage} setToastMessage={setToastMessage} />,
+        pettyExpense: <PettyExpense setActivePage={setActivePage} setToastMessage={setToastMessage} />,
+    };
 
     const renderPage = () => {
-        switch (activePage) {
-            case 'dashboard':
-                return <Dashboard employee={loggedInEmployee} setActivePage={setActivePage} kudos={kudos} allEmployees={allEmployees} />;
-            case 'profile':
-                return <Profile employee={loggedInEmployee} />;
-            case 'leave':
-                return <Leave />;
-            case 'expenses':
-                return <Expenses />;
-            case 'compensation':
-                return <Compensation employee={loggedInEmployee} />;
-            case 'performance':
-                return <Performance />;
-            case 'documents':
-                return <Documents />;
-            case 'learning':
-                return <Learning />;
-            case 'attendance':
-                return <Attendance />;
-            case 'onboarding':
-                return <Onboarding />;
-            case 'offboarding':
-                return <Offboarding />;
-            case 'careers':
-                return <Recruitment />;
-            case 'recognition':
-                return <Recognition allKudos={kudos} allEmployees={allEmployees} loggedInEmployee={loggedInEmployee} companyValues={mockCompanyValues} onNewKudo={handleNewKudo} />;
-            case 'directory':
-                return <Directory allEmployees={allEmployees} />;
-            case 'team':
-                return <TeamView currentEmployee={loggedInEmployee} allEmployees={allEmployees} />;
-            case 'benefits':
-                return <Benefits employee={loggedInEmployee} />;
-            case 'calendar':
-                return <CompanyCalendar events={mockCalendarEvents} />;
-            default:
-                return <Dashboard employee={loggedInEmployee} setActivePage={setActivePage} kudos={kudos} allEmployees={allEmployees} />;
-        }
+        return pageComponents[activePage] || pageComponents.dashboard;
     };
 
     return (
-        <div className="flex h-screen bg-slate-100 text-slate-800">
-            <Sidebar activePage={activePage} setActivePage={setActivePage} employee={loggedInEmployee} />
-            <main className="flex-1 flex flex-col overflow-hidden">
-                <header className="bg-white shadow-sm p-4 z-10">
+        <div className="relative flex h-screen bg-slate-100 dark:bg-slate-900 text-slate-800 dark:text-slate-200 overflow-hidden">
+             {isSidebarOpen && (
+                <div 
+                    className="fixed inset-0 bg-black bg-opacity-50 z-20 md:hidden"
+                    onClick={() => setIsSidebarOpen(false)}
+                    aria-hidden="true"
+                ></div>
+            )}
+            
+            <Sidebar 
+                activePage={activePage} 
+                setActivePage={setActivePage} 
+                employee={loggedInEmployee}
+                isOpen={isSidebarOpen}
+                setIsOpen={setIsSidebarOpen}
+            />
+            <main className="flex-1 flex flex-col overflow-hidden h-full">
+                <header className="bg-white dark:bg-slate-800/50 dark:border-b dark:border-slate-700 shadow-sm p-4 z-10">
                     <div className="flex items-center justify-between">
-                        <h1 className="text-2xl font-bold text-slate-900">{pageTitles[activePage]}</h1>
-                        <div className="flex items-center space-x-4">
-                            <span className="text-right">
-                                <p className="font-semibold">{loggedInEmployee.name}</p>
-                                <p className="text-sm text-slate-500">{loggedInEmployee.position}</p>
-                            </span>
-                            <img src={loggedInEmployee.avatarUrl} alt="User Avatar" className="w-12 h-12 rounded-full border-2 border-indigo-500" />
+                        <div className="flex items-center">
+                            <button
+                                onClick={() => setIsSidebarOpen(true)}
+                                className="md:hidden me-4 text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-200"
+                                aria-label="Open sidebar"
+                            >
+                                <MenuIcon />
+                            </button>
+                            <h1 className="text-xl md:text-2xl font-bold text-slate-900 dark:text-slate-50">{t(`page_titles.${activePage}`)}</h1>
+                        </div>
+                        <div className="flex items-center space-x-2 sm:space-x-4 rtl:space-x-reverse">
+                            <LanguageSwitcher />
+                            <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
+                            <div ref={notificationsRef} className="relative">
+                                <button
+                                    onClick={() => setIsNotificationsOpen(prev => !prev)}
+                                    className="relative p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200 transition-colors"
+                                    aria-label="View notifications"
+                                >
+                                    <BellIcon />
+                                    {unreadNotificationCount > 0 && (
+                                        <span className="absolute top-1.5 right-1.5 block h-2.5 w-2.5 rounded-full bg-red-500 border-2 border-white"></span>
+                                    )}
+                                </button>
+                                {isNotificationsOpen && (
+                                    <div className="absolute end-0 mt-2 w-80 md:w-96 bg-white dark:bg-slate-800 rounded-xl shadow-2xl z-50 overflow-hidden border border-slate-200 dark:border-slate-700">
+                                        <div className="p-3 flex justify-between items-center bg-slate-50 dark:bg-slate-700/50 border-b border-slate-200 dark:border-slate-700">
+                                            <p className="text-sm font-semibold text-slate-800 dark:text-slate-200">{t('app_header.notifications')}</p>
+                                            {unreadNotificationCount > 0 && (
+                                                <button onClick={handleMarkAllAsRead} className="text-xs font-semibold text-indigo-600 dark:text-indigo-400 hover:underline">{t('app_header.mark_all_read')}</button>
+                                            )}
+                                        </div>
+                                        <ul className="max-h-96 overflow-y-auto">
+                                            {userNotifications.length > 0 ? (
+                                                userNotifications.map(notif => (
+                                                    <li key={notif.id} className={`p-3 border-b border-slate-100 dark:border-slate-700/50 hover:bg-slate-50 dark:hover:bg-slate-700/50 ${!notif.read ? 'bg-indigo-50 dark:bg-indigo-900/20' : ''}`}>
+                                                        <div className="flex items-start space-x-3">
+                                                            <div className="flex-shrink-0 mt-0.5">
+                                                                {getNotificationIcon(notif.type)}
+                                                            </div>
+                                                            <div className="flex-1">
+                                                                <p className="text-sm text-slate-800 dark:text-slate-200">{notif.message}</p>
+                                                                <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">{timeAgo(notif.timestamp)}</p>
+                                                            </div>
+                                                            {!notif.read && (
+                                                                <button onClick={() => handleMarkAsRead(notif.id)} className="flex-shrink-0 w-2.5 h-2.5 mt-1.5 rounded-full bg-indigo-500 hover:bg-indigo-700" title={t('app_header.mark_read_tooltip')}>
+                                                                    <span className="sr-only">{t('app_header.mark_read_tooltip')}</span>
+                                                                </button>
+                                                            )}
+                                                        </div>
+                                                    </li>
+                                                ))
+                                            ) : (
+                                                <li className="p-4 text-center text-sm text-slate-500 dark:text-slate-400">{t('app_header.no_notifications')}</li>
+                                            )}
+                                        </ul>
+                                    </div>
+                                )}
+                            </div>
+                           <div ref={switcherRef} className="relative">
+                                <button onClick={() => setIsAccountSwitcherOpen(prev => !prev)} className="flex items-center space-x-2 p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">
+                                    <img src={loggedInEmployee.avatarUrl} alt="User Avatar" className="w-10 h-10 rounded-full border-2 border-indigo-500" />
+                                    <span className="text-end hidden sm:block">
+                                        <p className="font-semibold text-sm text-slate-900 dark:text-slate-50">{loggedInEmployee.name}</p>
+                                        <p className="text-xs text-slate-500 dark:text-slate-400">{loggedInEmployee.position}</p>
+                                    </span>
+                                    <ChevronDownIcon className="w-5 h-5 text-slate-500 dark:text-slate-400" />
+                                </button>
+                                {isAccountSwitcherOpen && (
+                                    <div className="absolute end-0 mt-2 w-80 bg-white dark:bg-slate-800 rounded-xl shadow-2xl z-50 overflow-hidden border border-slate-200 dark:border-slate-700">
+                                        <div className="p-4">
+                                            <p className="text-xs text-slate-500 dark:text-slate-400">{t('app_header.signed_in_as')}</p>
+                                            <p className="font-semibold text-sm text-slate-800 dark:text-slate-200 truncate">{loggedInEmployee.name}</p>
+                                        </div>
+                                        <hr className="border-slate-200 dark:border-slate-700" />
+                                        <ul className="max-h-72 overflow-y-auto">
+                                            {allEmployees.filter(emp => emp.id !== loggedInEmployee.id).map(emp => (
+                                                <li key={emp.id}>
+                                                    <button
+                                                        onClick={() => {
+                                                            setLoggedInEmployee(emp);
+                                                            setActivePage('dashboard');
+                                                            setIsAccountSwitcherOpen(false);
+                                                            setIsNotificationsOpen(false);
+                                                        }}
+                                                        className="w-full text-left flex items-center p-3 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors"
+                                                    >
+                                                        <img src={emp.avatarUrl} alt={emp.name} className="w-10 h-10 rounded-full me-3" />
+                                                        <div className="flex-1">
+                                                            <p className="font-semibold text-sm text-slate-800 dark:text-slate-200">{emp.name}</p>
+                                                            <p className="text-xs text-slate-500 dark:text-slate-400">{emp.position}</p>
+                                                        </div>
+                                                    </button>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                )}
+                           </div>
                         </div>
                     </div>
                 </header>
-                <div className="flex-1 overflow-y-auto p-6 md:p-8">
+                <div className="flex-1 overflow-y-auto p-6 md:p-8 pb-24 md:pb-8">
                     {renderPage()}
                 </div>
             </main>
+            
+            {toastMessage && (
+                <Toast message={toastMessage} onClose={() => setToastMessage('')} />
+            )}
+            
+            <LeaveRequestModal isOpen={isLeaveModalOpen} onClose={() => setIsLeaveModalOpen(false)} onSubmit={handleNewLeaveRequest} />
+            <ExpenseClaimModal isOpen={isExpenseModalOpen} onClose={() => setIsExpenseModalOpen(false)} onSubmit={handleNewExpenseClaim} />
 
             <button
                 onClick={() => setIsAssistantOpen(true)}
-                className="fixed bottom-6 right-6 z-40 bg-indigo-600 text-white rounded-full p-4 shadow-lg hover:bg-indigo-700 transition-transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                className="fixed bottom-20 end-6 z-40 bg-indigo-600 text-white rounded-full p-4 shadow-lg hover:bg-indigo-700 transition-transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 md:bottom-6"
                 aria-label="Open AI Assistant"
             >
                 <SparklesIcon className="w-6 h-6" />
             </button>
             
             <HelpAssistant isOpen={isAssistantOpen} onClose={() => setIsAssistantOpen(false)} />
+            <BottomNav 
+                activePage={activePage} 
+                setActivePage={setActivePage} 
+                onApplyLeaveClick={() => setIsLeaveModalOpen(true)}
+                onApplyExpenseClick={() => setIsExpenseModalOpen(true)}
+            />
         </div>
     );
 };

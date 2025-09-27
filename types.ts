@@ -45,6 +45,31 @@ export enum CompanyValue {
     Excellence = 'Excellence',
 }
 
+export enum NotificationType {
+    Kudos = 'Kudos',
+    LeaveRequest = 'Leave Request',
+    PerformanceReview = 'Performance Review',
+    System = 'System',
+}
+
+export enum ApprovalAction {
+    Approve = 'Approved',
+    Reject = 'Rejected',
+}
+
+export enum TaskStatus {
+    Open = 'Open',
+    InProgress = 'In Progress',
+    Completed = 'Completed',
+    Cancelled = 'Cancelled',
+}
+
+export enum TaskPriority {
+    Low = 'Low',
+    Medium = 'Medium',
+    High = 'High',
+}
+
 export interface BenefitEnrollment {
     medical: {
         planName: string;
@@ -84,7 +109,7 @@ export interface Employee {
   address: string;
   avatarUrl: string;
   managerId?: string;
-  role?: 'manager' | 'employee';
+  role?: 'new_hire' | 'employee' | 'manager' | 'director';
   compensation: {
       salary: number;
       lastBonus: {
@@ -102,6 +127,13 @@ export interface LeaveRequest {
   endDate: string;
   reason: string;
   status: LeaveStatus;
+  employeeId?: string;
+}
+
+export interface LeaveBalance {
+  type: 'Annual Leave' | 'Sick Leave' | 'Personal Leave';
+  total: number;
+  used: number;
 }
 
 export interface Payslip {
@@ -118,6 +150,7 @@ export interface ExpenseClaim {
   category: string;
   amount: number;
   status: ExpenseStatus;
+  employeeId?: string;
 }
 
 export interface PerformanceReview {
@@ -188,4 +221,42 @@ export interface Kudo {
     message: string;
     value: CompanyValue;
     timestamp: string; // ISO 8601 format
+}
+
+export interface Announcement {
+    id: string;
+    title: string;
+    snippet: string;
+    category: 'Company News' | 'HR Update' | 'Tech Blog' | 'Event';
+    date: string; // YYYY-MM-DD
+}
+
+export interface Notification {
+    id: string;
+    type: NotificationType;
+    message: string;
+    timestamp: string; // ISO 8601 format
+    read: boolean;
+    recipientId: string; // The ID of the employee who should see this, or 'all'
+    relatedId?: string; // e.g., the ID of the kudo or leave request
+}
+
+export interface Task {
+    id: string;
+    title: string;
+    description?: string;
+    status: TaskStatus;
+    priority: TaskPriority;
+    creatorId: string;
+    assigneeId: string;
+    dueDate: string; // ISO 8601 Date
+    progress: number; // 0-100
+    messageCount: number;
+}
+
+export type DashboardWidget = 'quickActions' | 'recognition' | 'announcements';
+
+export interface DashboardLayout {
+    left: DashboardWidget[];
+    right: DashboardWidget[];
 }

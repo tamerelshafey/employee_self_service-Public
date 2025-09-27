@@ -1,23 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Employee Self-Service Portal</title>
     <script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    darkMode: 'class',
+    theme: {
+      extend: {},
+    },
+    plugins: [],
+  }
+</script>
 <script type="importmap">
 {
   "imports": {
     "react-dom/": "https://esm.sh/react-dom@^19.1.1/",
     "react/": "https://esm.sh/react@^19.1.1/",
     "react": "https://esm.sh/react@^19.1.1",
-    "@google/genai": "https://esm.sh/@google/genai"
+    "@google/genai": "https://esm.sh/@google/genai",
+    "i18next": "https://esm.sh/i18next@^23.12.2",
+    "react-i18next": "https://esm.sh/react-i18next@^15.0.0",
+    "i18next-http-backend": "https://esm.sh/i18next-http-backend@^2.5.2",
+    "@dnd-kit/core": "https://esm.sh/@dnd-kit/core@6.1.0",
+    "@dnd-kit/sortable": "https://esm.sh/@dnd-kit/sortable@8.0.0",
+    "@dnd-kit/utilities": "https://esm.sh/@dnd-kit/utilities@3.2.2"
   }
 }
 </script>
 </head>
-<body class="bg-slate-50 antialiased">
+<body class="bg-slate-50 dark:bg-slate-900 antialiased">
     <div id="root"></div>
     <script type="module" src="/index.tsx"></script>
 </body>

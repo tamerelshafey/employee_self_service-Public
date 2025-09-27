@@ -1,0 +1,416 @@
+
+
+{
+  "sidebar": {
+    "dashboard": "Dashboard",
+    "profile": "My Profile",
+    "tasks": "My Tasks",
+    "newTask": "Create Task",
+    "onboarding": "Onboarding",
+    "offboarding": "Offboarding",
+    "attendance": "Attendance",
+    "leave": "Leave Requests",
+    "expenses": "Expense Claims",
+    "compensation": "Compensation",
+    "payslips": "Payslips",
+    "benefits": "Benefits",
+    "performance": "Performance",
+    "documents": "Documents",
+    "learning": "Learning",
+    "careers": "Careers",
+    "recognition": "Recognition",
+    "team": "My Team",
+    "approvals": "Approvals",
+    "directory": "Directory",
+    "calendar": "Calendar",
+    "orders": "Order Requests",
+    "visits": "Visit Logs",
+    "payments": "Payment Entry",
+    "pettyExpense": "Petty Expense",
+    "logout": "Logout"
+  },
+  "page_titles": {
+    "dashboard": "Dashboard",
+    "profile": "My Profile",
+    "tasks": "My Tasks",
+    "newTask": "Create New Task",
+    "leave": "Leave Requests",
+    "expenses": "Expense Claims",
+    "compensation": "Compensation",
+    "payslips": "My Payslips",
+    "performance": "Performance Review",
+    "documents": "Document Management",
+    "learning": "Learning & Development",
+    "attendance": "Attendance Tracking",
+    "onboarding": "Onboarding Checklist",
+    "offboarding": "Offboarding Checklist",
+    "careers": "Careers & Referrals",
+    "recognition": "Recognition Wall",
+    "directory": "Company Directory",
+    "team": "My Team",
+    "benefits": "My Benefits",
+    "calendar": "Company Calendar",
+    "approvals": "Approvals",
+    "orders": "Create Order Request",
+    "visits": "Create Visit Log",
+    "payments": "New Payment Entry",
+    "pettyExpense": "New Petty Expense"
+  },
+  "bottom_nav": {
+    "home": "Home",
+    "tasks": "Tasks",
+    "updates": "Updates",
+    "profile": "Profile"
+  },
+  "quick_actions": {
+    "apply_expense": "Apply Expense",
+    "apply_leave": "Apply Leave",
+    "create_order": "Create Order",
+    "create_visit": "Create Visit",
+    "create_task": "Create Task",
+    "payment_entry": "Payment Entry",
+    "petty_expense": "Petty Expense"
+  },
+  "dashboard": {
+    "welcome": "Welcome back, {{name}}!",
+    "greeting": "Here's a summary of your portal. Have a great day!",
+    "good_morning": "Good Morning, {{name}}!",
+    "good_afternoon": "Good Afternoon, {{name}}!",
+    "good_evening": "Good Evening, {{name}}!",
+    "started_day_at": "You started your day at {{time}}.",
+    "not_clocked_in": "You are currently clocked out.",
+    "check_out": "Check Out",
+    "check_in": "Check In",
+    "approval_requests": "Approval Requests",
+    "pending_requests": "{{count}} Pending Requests",
+    "your_task": "Your Task",
+    "view_all": "View all",
+    "no_tasks_title": "No Tasks on The Horizon!",
+    "no_tasks_subtitle": "Add a task or ask management to add a new task to your bucket.",
+    "customize": "Customize",
+    "pending_leave": "Pending Leave Requests",
+    "inprogress_courses": "In-Progress Courses",
+    "hours_logged": "Hours Logged (Week)",
+    "department": "Department",
+    "latest_recognition": "Latest Recognition",
+    "quick_actions": "Quick Actions",
+    "give_kudos": "Give Kudos",
+    "request_leave": "Request Leave",
+    "view_roles": "View Open Roles",
+    "find_colleague": "Find a Colleague",
+    "view_benefits": "View Benefits",
+    "update_profile": "Update Profile"
+  },
+  "profile": {
+    "personal_info": "Personal Information",
+    "details_prompt": "Details about the employee.",
+    "employee_id": "Employee ID",
+    "full_name": "Full name",
+    "department": "Department",
+    "email": "Email address",
+    "phone": "Phone number",
+    "address": "Address",
+    "reporting_line": "Reporting Line",
+    "reports_to": "Reports to",
+    "edit_profile": "Edit Profile"
+  },
+  "leave": {
+    "my_balances": "My Leave Balances",
+    "days_available": "days available",
+    "used_of_total": "{{used}} used of {{total}} total",
+    "my_history": "My Leave History",
+    "new_request": "New Request",
+    "table_type": "Type",
+    "table_dates": "Dates",
+    "table_reason": "Reason",
+    "table_status": "Status",
+    "modal_title": "New Leave Request",
+    "modal_type": "Leave Type",
+    "modal_start_date": "Start Date",
+    "modal_end_date": "End Date",
+    "modal_reason": "Reason",
+    "modal_cancel": "Cancel",
+    "modal_submit": "Submit Request",
+    "annual_leave": "Annual Leave",
+    "sick_leave": "Sick Leave",
+    "personal_leave": "Personal Leave",
+    "unpaid_leave": "Unpaid Leave"
+  },
+  "expenses": {
+    "title": "My Expense Claims",
+    "new_claim": "New Claim",
+    "table_date": "Date",
+    "table_description": "Description",
+    "table_category": "Category",
+    "table_amount": "Amount",
+    "table_status": "Status",
+    "modal_title": "New Expense Claim",
+    "modal_date": "Date of Expense",
+    "modal_category": "Category",
+    "modal_category_travel": "Travel",
+    "modal_category_meals": "Meals",
+    "modal_category_supplies": "Supplies",
+    "modal_category_software": "Software",
+    "modal_category_petty": "Petty Expense",
+    "modal_category_other": "Other",
+    "modal_amount": "Amount ($)",
+    "modal_description": "Description",
+    "modal_receipt": "Attach Receipt",
+    "modal_cancel": "Cancel",
+    "modal_submit": "Submit Claim"
+  },
+  "payslips": {
+    "title": "Payslip History",
+    "table_period": "Pay Period",
+    "table_date": "Issue Date",
+    "table_net_pay": "Net Pay",
+    "download": "Download"
+  },
+  "compensation": {
+    "title": "Compensation Overview",
+    "salary": "Current Annual Salary",
+    "bonus": "Last Bonus",
+    "bonus_date": "Awarded on {{date}}",
+    "info_text": "This is a summary of your compensation package. For a detailed breakdown, please refer to your individual payslips. If you have any questions, please contact the HR department."
+  },
+  "documents": {
+    "title": "My Documents",
+    "search_placeholder": "Search documents...",
+    "table_name": "Document Name",
+    "table_category": "Category",
+    "table_date": "Date Uploaded",
+    "table_actions": "Actions",
+    "download": "Download",
+    "empty_message": "No documents found matching your search."
+  },
+  "performance": {
+    "reviewed_by": "Reviewed by: {{reviewer}}",
+    "view_details": "View Details",
+    "modal_rating": "Overall Rating",
+    "modal_strengths": "Strengths",
+    "modal_improvement": "Areas for Improvement",
+    "modal_goals": "Goals for Next Period",
+    "close": "Close"
+  },
+  "approvals": {
+    "title": "Pending Approvals",
+    "subtitle": "Review and respond to pending requests from your team.",
+    "leave_tab": "Leave Requests",
+    "expense_tab": "Expense Claims",
+    "approve": "Approve",
+    "reject": "Reject",
+    "empty_title": "All Caught Up!",
+    "empty_message_leave": "You have no pending leave requests.",
+    "empty_message_expense": "You have no pending expense claims.",
+    "request_details": {
+      "type": "Type:",
+      "dates": "Dates:",
+      "reason": "Reason:",
+      "category": "Category:",
+      "date": "Date:",
+      "amount": "Amount:",
+      "description": "Description:"
+    }
+  },
+  "app_header": {
+    "notifications": "Notifications",
+    "mark_all_read": "Mark all as read",
+    "no_notifications": "You have no new notifications.",
+    "mark_read_tooltip": "Mark as read",
+    "signed_in_as": "Signed in as"
+  },
+  "learning": {
+    "my_learning": "My Learning",
+    "course_catalog": "Course Catalog",
+    "enroll_now": "Enroll Now"
+  },
+  "attendance": {
+    "time_clock": "Time Clock",
+    "current_status": "Your current status is:",
+    "clocked_in": " Clocked In",
+    "clocked_out": " Clocked Out",
+    "clock_in_button": "Clock In",
+    "clock_out_button": "Clock Out",
+    "todays_hours": "Today's Hours",
+    "recent_activity": "My Recent Activity",
+    "table_date": "Date",
+    "table_clock_in": "Clock In",
+    "table_clock_out": "Clock Out",
+    "table_total_hours": "Total Hours",
+    "table_status": "Status",
+    "not_applicable": "N/A",
+    "attendance_log": "Attendance Log",
+    "legend": "Legend",
+    "present": "Present",
+    "on_leave": "On Leave",
+    "holiday": "Holiday",
+    "absent": "Absent"
+  },
+  "onboarding": {
+    "title": "Your Onboarding Journey",
+    "subtitle": "Welcome to the team! Here are your first steps to get you settled in.",
+    "progress": "Overall Progress"
+  },
+  "offboarding": {
+    "title": "Your Offboarding Process",
+    "subtitle": "Please complete the following tasks to ensure a smooth transition. We wish you the best in your future endeavors.",
+    "progress": "Completion Progress",
+    "contact_hr": "If you have any questions during this process, please contact the HR department at <1>hr@example.com</1>."
+  },
+  "careers": {
+    "title": "Internal Job Openings",
+    "subtitle": "Explore opportunities to grow your career with us. Know someone great? Refer them!",
+    "search_placeholder": "Search by title...",
+    "all_departments": "All Departments",
+    "view_details": "View Details",
+    "apply_now": "Apply Now",
+    "refer_candidate": "Refer a Candidate",
+    "referral_modal_title": "Refer a Candidate for {{title}}",
+    "candidate_name": "Candidate's Name",
+    "candidate_email": "Candidate's Email",
+    "recommendation_reason": "Why are you recommending them?",
+    "cancel": "Cancel",
+    "submit_referral": "Submit Referral",
+    "application_submitted": "Application submitted!",
+    "empty_message": "No job openings found matching your criteria."
+  },
+  "directory": {
+    "title": "Company Directory",
+    "subtitle": "Find and connect with colleagues across the company.",
+    "search_placeholder": "Search by name or title...",
+    "empty_message": "No colleagues found matching your search."
+  },
+  "team": {
+    "title": "Your Team Structure",
+    "subtitle": "Here's a look at your immediate team at a glance.",
+    "manager": "Your Manager",
+    "manager_role": "Manager",
+    "peers": "Your Peers",
+    "peer_role": "Peer",
+    "direct_reports": "Your Direct Reports",
+    "report_role": "Direct Report",
+    "empty_message": "Team information is not available at the moment."
+  },
+  "benefits": {
+    "title": "My Benefit Elections",
+    "subtitle": "This is a summary of your current benefit enrollments. Changes can be made during open enrollment.",
+    "manage_enrollments": "Manage Enrollments",
+    "medical_title": "Medical Insurance",
+    "dental_title": "Dental Insurance",
+    "vision_title": "Vision Insurance",
+    "retirement_title": "401(k) Retirement",
+    "plan_name": "Plan Name",
+    "coverage_tier": "Coverage Tier",
+    "cost_per_paycheck": "Cost per Paycheck",
+    "contribution_rate": "Contribution Rate",
+    "employer_match": "Employer Match",
+    "vested_balance": "Vested Balance"
+  },
+  "calendar": {
+    "upcoming_events": "Upcoming Events & Holidays",
+    "no_upcoming_events": "No upcoming events or holidays found.",
+    "event": "Event",
+    "holiday": "Holiday",
+    "days": {
+      "sun": "Sun",
+      "mon": "Mon",
+      "tue": "Tue",
+      "wed": "Wed",
+      "thu": "Thu",
+      "fri": "Fri",
+      "sat": "Sat"
+    }
+  },
+  "recognition": {
+    "title": "Recognition Wall",
+    "subtitle": "Celebrating the great work and values of our team members.",
+    "give_kudos": "Give Kudos",
+    "recognized": "recognized",
+    "modal_title": "Give Kudos",
+    "modal_receiver_label": "Who do you want to recognize?",
+    "modal_receiver_placeholder": "Select a colleague",
+    "modal_value_label": "Which company value did they demonstrate?",
+    "modal_keywords_label": "What's the key achievement? (for AI)",
+    "modal_keywords_placeholder": "e.g., solved a critical bug under pressure",
+    "modal_message_label": "Your message",
+    "modal_generate_button": "Generate with AI",
+    "modal_generating_button": "Generating...",
+    "modal_message_placeholder": "Share the details of their awesome work, or generate a message with AI.",
+    "modal_cancel": "Cancel",
+    "modal_submit": "Send Kudos"
+  },
+  "announcements": {
+    "title": "What's New",
+    "view_all": "View all announcements"
+  },
+  "tasks": {
+    "title": "My Tasks",
+    "tabs": {
+      "today": "Today's Tasks",
+      "all": "All Tasks",
+      "createdByMe": "Created by Me"
+    },
+    "card": {
+      "createdBy": "Created By",
+      "progress": "Progress",
+      "messages": "Messages"
+    },
+    "status": {
+      "open": "Open",
+      "in_progress": "In Progress",
+      "completed": "Completed",
+      "cancelled": "Cancelled"
+    },
+    "priority": {
+      "low": "Low",
+      "medium": "Medium",
+      "high": "High"
+    }
+  },
+  "common": {
+    "back_to_dashboard": "Back to Dashboard",
+    "submit": "Submit"
+  },
+  "orders": {
+    "submit_success": "Order request submitted successfully!",
+    "item_name": "Item Name",
+    "item_placeholder": "e.g., New MacBook Pro 16\"",
+    "category": "Category",
+    "categories": {
+      "it": "IT Equipment",
+      "supplies": "Office Supplies",
+      "other": "Other"
+    },
+    "justification": "Business Justification",
+    "justification_placeholder": "Please explain why this item is needed."
+  },
+  "visits": {
+    "submit_success": "Visit log created successfully!",
+    "date": "Date of Visit",
+    "location": "Location",
+    "location_placeholder": "e.g., Client HQ, 123 Main St",
+    "purpose": "Purpose of Visit",
+    "purpose_placeholder": "e.g., Q3 business review with Acme Corp."
+  },
+  "newTask": {
+    "submit_success": "New task created successfully!",
+    "title": "Task Title",
+    "description": "Description (Optional)",
+    "assignee": "Assign To",
+    "priority": "Priority",
+    "due_date": "Due Date"
+  },
+  "payments": {
+    "submit_success": "Payment entry submitted for approval!",
+    "payee": "Payee Name",
+    "amount": "Amount ($)",
+    "invoice_number": "Invoice Number (Optional)",
+    "reason": "Reason for Payment"
+  },
+  "petty_expense": {
+    "submit_success": "Petty expense submitted successfully!",
+    "date": "Date of Expense",
+    "amount": "Amount ($)",
+    "description": "Description"
+  }
+}

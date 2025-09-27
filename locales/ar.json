@@ -1,0 +1,416 @@
+
+
+{
+  "sidebar": {
+    "dashboard": "لوحة التحكم",
+    "profile": "ملفي الشخصي",
+    "tasks": "مهامي",
+    "newTask": "إنشاء مهمة",
+    "onboarding": "إجراءات مباشرة العمل",
+    "offboarding": "إجراءات إنهاء الخدمة",
+    "attendance": "الحاضر",
+    "leave": "طلبات الإجازة",
+    "expenses": "مطالبات النفقات",
+    "compensation": "التعويضات",
+    "payslips": "قسائم الرواتب",
+    "benefits": "المزايا",
+    "performance": "الأداء",
+    "documents": "المستندات",
+    "learning": "التعلم",
+    "careers": "الوظائف",
+    "recognition": "التقدير",
+    "team": "فريقي",
+    "approvals": "الموافقات",
+    "directory": "الدليل",
+    "calendar": "التقويم",
+    "orders": "طلبات الشراء",
+    "visits": "سجلات الزيارة",
+    "payments": "إدخال دفعة",
+    "pettyExpense": "مصروفات نثرية",
+    "logout": "تسجيل الخروج"
+  },
+  "page_titles": {
+    "dashboard": "لوحة التحكم",
+    "profile": "ملفي الشخصي",
+    "tasks": "مهامي",
+    "newTask": "إنشاء مهمة جديدة",
+    "leave": "طلبات الإجازة",
+    "expenses": "مطالبات النفقات",
+    "compensation": "التعويضات",
+    "payslips": "قسائم رواتبي",
+    "performance": "تقييم الأداء",
+    "documents": "إدارة المستندات",
+    "learning": "التعلم والتطوير",
+    "attendance": "تتبع الحضور",
+    "onboarding": "قائمة مباشرة العمل",
+    "offboarding": "قائمة إنهاء الخدمة",
+    "careers": "الوظائف والإحالات",
+    "recognition": "جدار التقدير",
+    "directory": "دليل الشركة",
+    "team": "فريقي",
+    "benefits": "المزايا الخاصة بي",
+    "calendar": "تقويم الشركة",
+    "approvals": "الموافقات",
+    "orders": "إنشاء طلب شراء",
+    "visits": "إنشاء سجل زيارة",
+    "payments": "إدخال دفعة جديدة",
+    "pettyExpense": "مصروفات نثرية جديدة"
+  },
+  "bottom_nav": {
+    "home": "الرئيسية",
+    "tasks": "المهام",
+    "updates": "التحديثات",
+    "profile": "الملف الشخصي"
+  },
+  "quick_actions": {
+    "apply_expense": "تقديم طلب نفقة",
+    "apply_leave": "تقديم طلب إجازة",
+    "create_order": "إنشاء طلب",
+    "create_visit": "إنشاء زيارة",
+    "create_task": "إنشاء مهمة",
+    "payment_entry": "إدخال دفعة",
+    "petty_expense": "مصروفات نثرية"
+  },
+  "dashboard": {
+    "welcome": "مرحبًا بعودتك، {{name}}!",
+    "greeting": "هذا ملخص بوابتك. نتمنى لك يوماً رائعاً!",
+    "good_morning": "صباح الخير، {{name}}!",
+    "good_afternoon": "مساء الخير، {{name}}!",
+    "good_evening": "مساء الخير، {{name}}!",
+    "started_day_at": "لقد بدأت يومك في الساعة {{time}}.",
+    "not_clocked_in": "أنت مسجل خروج حالياً.",
+    "check_out": "تسجيل الخروج",
+    "check_in": "تسجيل الدخول",
+    "approval_requests": "طلبات الموافقة",
+    "pending_requests": "{{count}} طلبات معلقة",
+    "your_task": "مهامك",
+    "view_all": "عرض الكل",
+    "no_tasks_title": "لا توجد مهام في الأفق!",
+    "no_tasks_subtitle": "أضف مهمة أو اطلب من الإدارة إضافة مهمة جديدة إلى مجموعتك.",
+    "customize": "تخصيص",
+    "pending_leave": "طلبات الإجازة المعلقة",
+    "inprogress_courses": "دورات قيد التقدم",
+    "hours_logged": "الساعات المسجلة (أسبوع)",
+    "department": "القسم",
+    "latest_recognition": "أحدث تقدير",
+    "quick_actions": "إجراءات سريعة",
+    "give_kudos": "إعطاء تقدير",
+    "request_leave": "طلب إجازة",
+    "view_roles": "عرض الوظائف المتاحة",
+    "find_colleague": "البحث عن زميل",
+    "view_benefits": "عرض المزايا",
+    "update_profile": "تحديث الملف الشخصي"
+  },
+  "profile": {
+    "personal_info": "المعلومات الشخصية",
+    "details_prompt": "تفاصيل حول الموظف.",
+    "employee_id": "معرف الموظف",
+    "full_name": "الاسم الكامل",
+    "department": "القسم",
+    "email": "البريد الإلكتروني",
+    "phone": "رقم الهاتف",
+    "address": "العنوان",
+    "reporting_line": "التسلسل الإداري",
+    "reports_to": "مسؤول مباشر",
+    "edit_profile": "تعديل الملف الشخصي"
+  },
+  "leave": {
+    "my_balances": "أرصدة إجازاتي",
+    "days_available": "أيام متاحة",
+    "used_of_total": "{{used}} مستخدم من {{total}} إجمالي",
+    "my_history": "سجل إجازاتي",
+    "new_request": "طلب جديد",
+    "table_type": "النوع",
+    "table_dates": "التواريخ",
+    "table_reason": "السبب",
+    "table_status": "الحالة",
+    "modal_title": "طلب إجازة جديد",
+    "modal_type": "نوع الإجازة",
+    "modal_start_date": "تاريخ البدء",
+    "modal_end_date": "تاريخ الانتهاء",
+    "modal_reason": "السبب",
+    "modal_cancel": "إلغاء",
+    "modal_submit": "إرسال الطلب",
+    "annual_leave": "إجازة سنوية",
+    "sick_leave": "إجازة مرضية",
+    "personal_leave": "إجازة شخصية",
+    "unpaid_leave": "إجازة بدون راتب"
+  },
+  "expenses": {
+    "title": "مطالبات النفقات الخاصة بي",
+    "new_claim": "مطالبة جديدة",
+    "table_date": "التاريخ",
+    "table_description": "الوصف",
+    "table_category": "الفئة",
+    "table_amount": "المبلغ",
+    "table_status": "الحالة",
+    "modal_title": "مطالبة نفقات جديدة",
+    "modal_date": "تاريخ النفقة",
+    "modal_category": "الفئة",
+    "modal_category_travel": "سفر",
+    "modal_category_meals": "وجبات",
+    "modal_category_supplies": "لوازم",
+    "modal_category_software": "برامج",
+    "modal_category_petty": "مصروفات نثرية",
+    "modal_category_other": "أخرى",
+    "modal_amount": "المبلغ ($)",
+    "modal_description": "الوصف",
+    "modal_receipt": "إرفاق إيصال",
+    "modal_cancel": "إلغاء",
+    "modal_submit": "إرسال المطالبة"
+  },
+  "payslips": {
+    "title": "سجل قسائم الرواتب",
+    "table_period": "فترة الدفع",
+    "table_date": "تاريخ الإصدار",
+    "table_net_pay": "صافي الراتب",
+    "download": "تحميل"
+  },
+  "compensation": {
+    "title": "نظرة عامة على التعويضات",
+    "salary": "الراتب السنوي الحالي",
+    "bonus": "آخر مكافأة",
+    "bonus_date": "مُنحت في {{date}}",
+    "info_text": "هذا ملخص لحزمة التعويضات الخاصة بك. للحصول على تفاصيل دقيقة، يرجى الرجوع إلى قسائم الرواتب الفردية الخاصة بك. إذا كان لديك أي أسئلة، يرجى الاتصال بقسم الموارد البشرية."
+  },
+  "documents": {
+    "title": "مستنداتي",
+    "search_placeholder": "ابحث في المستندات...",
+    "table_name": "اسم المستند",
+    "table_category": "الفئة",
+    "table_date": "تاريخ الرفع",
+    "table_actions": "الإجراءات",
+    "download": "تحميل",
+    "empty_message": "لم يتم العثور على مستندات تطابق بحثك."
+  },
+  "performance": {
+    "reviewed_by": "تمت المراجعة بواسطة: {{reviewer}}",
+    "view_details": "عرض التفاصيل",
+    "modal_rating": "التقييم العام",
+    "modal_strengths": "نقاط القوة",
+    "modal_improvement": "مجالات التحسين",
+    "modal_goals": "أهداف الفترة القادمة",
+    "close": "إغلاق"
+  },
+  "approvals": {
+    "title": "الموافقات المعلقة",
+    "subtitle": "مراجعة والرد على الطلبات المعلقة من فريقك.",
+    "leave_tab": "طلبات الإجازة",
+    "expense_tab": "مطالبات النفقات",
+    "approve": "موافقة",
+    "reject": "رفض",
+    "empty_title": "لقد انتهيت من كل شيء!",
+    "empty_message_leave": "ليس لديك طلبات إجازة معلقة.",
+    "empty_message_expense": "ليس لديك مطالبات نفقات معلقة.",
+    "request_details": {
+      "type": "النوع:",
+      "dates": "التواريخ:",
+      "reason": "السبب:",
+      "category": "الفئة:",
+      "date": "التاريخ:",
+      "amount": "المبلغ:",
+      "description": "الوصف:"
+    }
+  },
+  "app_header": {
+    "notifications": "الإشعارات",
+    "mark_all_read": "تحديد الكل كمقروء",
+    "no_notifications": "ليس لديك إشعارات جديدة.",
+    "mark_read_tooltip": "تحديد كمقروء",
+    "signed_in_as": "قمت بتسجيل الدخول كـ"
+  },
+  "learning": {
+    "my_learning": "مساري التعليمي",
+    "course_catalog": "كتالوج الدورات",
+    "enroll_now": "سجل الآن"
+  },
+  "attendance": {
+    "time_clock": "ساعة الحضور",
+    "current_status": "حالتك الحالية هي:",
+    "clocked_in": " تسجيل حضور",
+    "clocked_out": " تسجيل انصراف",
+    "clock_in_button": "تسجيل حضور",
+    "clock_out_button": "تسجيل انصراف",
+    "todays_hours": "ساعات اليوم",
+    "recent_activity": "نشاطي الأخير",
+    "table_date": "التاريخ",
+    "table_clock_in": "وقت الحضور",
+    "table_clock_out": "وقت الانصراف",
+    "table_total_hours": "إجمالي الساعات",
+    "table_status": "الحالة",
+    "not_applicable": "غير متاح",
+    "attendance_log": "سجل الحضور",
+    "legend": "مفتاح الرموز",
+    "present": "حاضر",
+    "on_leave": "في إجازة",
+    "holiday": "عطلة",
+    "absent": "غائب"
+  },
+  "onboarding": {
+    "title": "رحلة انضمامك",
+    "subtitle": "مرحبًا بك في الفريق! إليك خطواتك الأولى للبدء.",
+    "progress": "التقدم العام"
+  },
+  "offboarding": {
+    "title": "عملية إنهاء خدمتك",
+    "subtitle": "يرجى إكمال المهام التالية لضمان انتقال سلس. نتمنى لك كل التوفيق في مساعيك المستقبلية.",
+    "progress": "تقدم الإنجاز",
+    "contact_hr": "إذا كان لديك أي أسئلة خلال هذه العملية، يرجى الاتصال بقسم الموارد البشرية على <1>hr@example.com</1>."
+  },
+  "careers": {
+    "title": "الوظائف الداخلية الشاغرة",
+    "subtitle": "استكشف فرصًا لتنمية حياتك المهنية معنا. هل تعرف شخصًا رائعًا؟ قم بإحالته!",
+    "search_placeholder": "ابحث حسب المسمى الوظيفي...",
+    "all_departments": "جميع الأقسام",
+    "view_details": "عرض التفاصيل",
+    "apply_now": "قدم الآن",
+    "refer_candidate": "إحالة مرشح",
+    "referral_modal_title": "إحالة مرشح لوظيفة {{title}}",
+    "candidate_name": "اسم المرشح",
+    "candidate_email": "البريد الإلكتروني للمرشح",
+    "recommendation_reason": "لماذا توصي به؟",
+    "cancel": "إلغاء",
+    "submit_referral": "إرسال الإحالة",
+    "application_submitted": "تم تقديم الطلب!",
+    "empty_message": "لم يتم العثور على وظائف شاغرة تطابق معاييرك."
+  },
+  "directory": {
+    "title": "دليل الشركة",
+    "subtitle": "ابحث عن زملائك وتواصل معهم في جميع أنحاء الشركة.",
+    "search_placeholder": "ابحث بالاسم أو المسمى الوظيفي...",
+    "empty_message": "لم يتم العثور على زملاء يطابقون بحثك."
+  },
+  "team": {
+    "title": "هيكل فريقك",
+    "subtitle": "إليك نظرة سريعة على فريقك المباشر.",
+    "manager": "مديرك",
+    "manager_role": "مدير",
+    "peers": "زملاؤك",
+    "peer_role": "زميل",
+    "direct_reports": "مرؤوسيك المباشرين",
+    "report_role": "مرؤوس مباشر",
+    "empty_message": "معلومات الفريق غير متوفرة حاليًا."
+  },
+  "benefits": {
+    "title": "اختياراتي من المزايا",
+    "subtitle": "هذا ملخص لتسجيلاتك الحالية في المزايا. يمكن إجراء التغييرات خلال فترة التسجيل المفتوحة.",
+    "manage_enrollments": "إدارة التسجيلات",
+    "medical_title": "التأمين الطبي",
+    "dental_title": "تأمين الأسنان",
+    "vision_title": "تأمين النظر",
+    "retirement_title": "تقاعد 401(k)",
+    "plan_name": "اسم الخطة",
+    "coverage_tier": "مستوى التغطية",
+    "cost_per_paycheck": "التكلفة لكل راتب",
+    "contribution_rate": "معدل المساهمة",
+    "employer_match": "مساهمة الشركة",
+    "vested_balance": "الرصيد المستحق"
+  },
+  "calendar": {
+    "upcoming_events": "الأحداث والعطلات القادمة",
+    "no_upcoming_events": "لا توجد أحداث أو عطلات قادمة.",
+    "event": "حدث",
+    "holiday": "عطلة",
+    "days": {
+      "sun": "الأحد",
+      "mon": "الاثنين",
+      "tue": "الثلاثاء",
+      "wed": "الأربعاء",
+      "thu": "الخميس",
+      "fri": "الجمعة",
+      "sat": "السبت"
+    }
+  },
+  "recognition": {
+    "title": "جدار التقدير",
+    "subtitle": "نحتفل بالعمل الرائع وقيم أعضاء فريقنا.",
+    "give_kudos": "إعطاء تقدير",
+    "recognized": "قدّر",
+    "modal_title": "إعطاء تقدير",
+    "modal_receiver_label": "من تريد تقديره؟",
+    "modal_receiver_placeholder": "اختر زميلاً",
+    "modal_value_label": "أي قيمة من قيم الشركة أظهرها؟",
+    "modal_keywords_label": "ما هو الإنجاز الرئيسي؟ (للذكاء الاصطناعي)",
+    "modal_keywords_placeholder": "مثال: حل خطأ حرج تحت الضغط",
+    "modal_message_label": "رسالتك",
+    "modal_generate_button": "إنشاء بواسطة الذكاء الاصطناعي",
+    "modal_generating_button": "جاري الإنشاء...",
+    "modal_message_placeholder": "شارك تفاصيل عملهم الرائع، أو أنشئ رسالة باستخدام الذكاء الاصطناعي.",
+    "modal_cancel": "إلغاء",
+    "modal_submit": "إرسال التقدير"
+  },
+  "announcements": {
+    "title": "ما الجديد",
+    "view_all": "عرض جميع الإعلانات"
+  },
+  "tasks": {
+    "title": "مهامي",
+    "tabs": {
+      "today": "مهام اليوم",
+      "all": "كل المهام",
+      "createdByMe": "أنشأتها أنا"
+    },
+    "card": {
+      "createdBy": "أنشأها",
+      "progress": "التقدم",
+      "messages": "رسائل"
+    },
+    "status": {
+      "open": "مفتوحة",
+      "in_progress": "قيد التنفيذ",
+      "completed": "مكتملة",
+      "cancelled": "ملغاة"
+    },
+    "priority": {
+      "low": "منخفضة",
+      "medium": "متوسطة",
+      "high": "عالية"
+    }
+  },
+  "common": {
+    "back_to_dashboard": "العودة إلى لوحة التحكم",
+    "submit": "إرسال"
+  },
+  "orders": {
+    "submit_success": "تم إرسال طلب الشراء بنجاح!",
+    "item_name": "اسم العنصر",
+    "item_placeholder": "مثال: جهاز MacBook Pro 16 بوصة جديد",
+    "category": "الفئة",
+    "categories": {
+      "it": "معدات تقنية المعلومات",
+      "supplies": "لوازم مكتبية",
+      "other": "أخرى"
+    },
+    "justification": "المبرر التجاري",
+    "justification_placeholder": "يرجى توضيح سبب الحاجة لهذا العنصر."
+  },
+  "visits": {
+    "submit_success": "تم إنشاء سجل الزيارة بنجاح!",
+    "date": "تاريخ الزيارة",
+    "location": "الموقع",
+    "location_placeholder": "مثال: مقر العميل، 123 الشارع الرئيسي",
+    "purpose": "الغرض من الزيارة",
+    "purpose_placeholder": "مثال: مراجعة أعمال الربع الثالث مع شركة أكمي."
+  },
+  "newTask": {
+    "submit_success": "تم إنشاء المهمة الجديدة بنجاح!",
+    "title": "عنوان المهمة",
+    "description": "الوصف (اختياري)",
+    "assignee": "إسناد إلى",
+    "priority": "الأولوية",
+    "due_date": "تاريخ الاستحقاق"
+  },
+  "payments": {
+    "submit_success": "تم إرسال إدخال الدفعة للموافقة!",
+    "payee": "اسم المستفيد",
+    "amount": "المبلغ ($)",
+    "invoice_number": "رقم الفاتورة (اختياري)",
+    "reason": "سبب الدفع"
+  },
+  "petty_expense": {
+    "submit_success": "تم إرسال المصروفات النثرية بنجاح!",
+    "date": "تاريخ المصروف",
+    "amount": "المبلغ ($)",
+    "description": "الوصف"
+  }
+}
